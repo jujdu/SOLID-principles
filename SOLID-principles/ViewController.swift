@@ -32,6 +32,9 @@ class ViewController: UIViewController {
         dataFetcherService.fetchFreeGames { (freeGames) in
             print(freeGames?.feed.results.first?.name)
         }
+        dataFetcherService.fetchLocalData { (games) in
+            print(games?.feed.results.last?.name)
+        }
     }
     
     // MARK: - Business logic

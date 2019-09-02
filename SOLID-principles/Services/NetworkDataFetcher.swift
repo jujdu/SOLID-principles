@@ -21,7 +21,6 @@ class NetworkDataFetcher: DataFetcher {
     }
     
     func fetchGenericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> ()) {
-        print(T.self)
         networking.request(urlString: urlString) { (data, error) in
             
             if let error = error {
