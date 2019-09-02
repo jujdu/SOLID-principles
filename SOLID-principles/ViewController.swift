@@ -8,19 +8,11 @@
 
 import UIKit
 
-struct Country: Decodable {
-    var Id: String
-    var Time: String
-    var Name: String
-    var Image: String?
-}
-
 class ViewController: UIViewController {
     
-    let urlString = "https://raw.githubusercontent.com/Softex-Group/task-mobile/master/test.json"
-    
     // Внешние зависимости
-    var networkService = NetworkService()
+//    var networkService = NetworkService()
+    var dataFetcherService = DataFetcherService()
     let dataStore = DataStore()
     
     // Элементы пользовательского интерфейса
@@ -34,7 +26,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         saveButton.layer.cornerRadius = saveButton.frame.width / 2
 
-        networkService.dataFetcher(urlString: urlString)
+        dataFetcherService.fetchCountry { (countries) in
+            print(countries?.first?.Name)
+        }
+        dataFetcherService.fetchFreeGames { (freeGames) in
+            print(freeGames?.feed.results.first?.name)
+        }
     }
     
     // MARK: - Business logic
